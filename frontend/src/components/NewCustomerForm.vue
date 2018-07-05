@@ -11,12 +11,12 @@
                 <div class="field-body">
                     <div class="field">
                         <p class="control is-expanded">
-                            <input class="input first" type="text" placeholder="First name" v-model="form.name.first">
+                            <input class="input first" type="text" placeholder="First name" v-model="form.name.first" required>
                         </p>
                     </div>
                     <div class="field">
                         <p class="control is-expanded">
-                            <input class="input last" type="text" placeholder="Last name" v-model="form.name.last">
+                            <input class="input last" type="text" placeholder="Last name" v-model="form.name.last" required>
                         </p>
                     </div>
                     <div class="field">
@@ -71,9 +71,12 @@
         },
         
         methods: {
-            create() {
+            create(e) {
                 CustomerService.create(this.form)
-                    .then(response => this.$emit('customerCreated', response.data))
+                    .then(response => {
+                        this.$emit('create', response.data)
+                        e.target.reset()
+                    })
                     .catch(err => console.error(err))
             }
         }

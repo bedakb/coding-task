@@ -1,7 +1,10 @@
 <template>
     <div>
         <!-- New customer form -->
-        <new-customer-form></new-customer-form>
+        <new-customer-form
+            @create="add"
+        >
+        </new-customer-form>
 
         <!-- List all customers and store them in the table -->
         <table class="table is-fullwidth" v-if="!isLoading">
@@ -78,6 +81,9 @@
                         this.customers = response.data
                     })
                     .catch(err => console.error(err))
+            },
+            add(data) {
+                this.customers.push(data)
             }
         }
 

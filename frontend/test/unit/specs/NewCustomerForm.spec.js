@@ -39,7 +39,7 @@ describe('NewCustomerForm', () => {
         })
 
         moxios.wait(() => {
-            expect(wrapper.emitted().customerCreated).toBeTruthy()
+            expect(wrapper.emitted().create).toBeTruthy()
             done()
         })
 
