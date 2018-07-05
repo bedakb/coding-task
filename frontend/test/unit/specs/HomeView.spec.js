@@ -1,5 +1,8 @@
-import { mount } from '@vue/test-utils'
+import Vue from 'vue'
+import { mount, shallowMount } from '@vue/test-utils'
 import HomeView from '@/views/HomeView'
+
+import NewCustomerForm from '@/components/NewCustomerForm'
 
 import moxios from 'moxios'
 
@@ -23,7 +26,7 @@ describe('HomeView', () => {
 
         moxios.wait(() => {
             let table = wrapper.find('.table')
-            expect(table.html()).toContain('<td>Belmin</td>')
+            expect(table.html()).toContain('Belmin')
             done()
         })
     })
@@ -35,5 +38,49 @@ describe('HomeView', () => {
 
         expect(wrapper.find('.loading').exists()).toBe(true)
     })
+
+    it('push new customer to list', () => {
+        let wrapper = registerStubbedWrapper()
+        
+        createBasicCustomer(wrapper, 'David')
+
+        let table = wrapper.find('.table')
+        expect(table.html()).toContain('David')
+    })
+
+    it('remove customer from the list', (done) => {
+        let wrapper = registerStubbedWrapper()
+
+        createBasicCustomer(wrapper, 'David')
+        createBasicCustomer(wrapper, 'Alex')
+
+        let deleteButton = wrapper.find('.table > tbody > tr:first-child > td:last-child .remove')
+        deleteButton.trigger('click')
+
+        moxios.wait(() => {
+            let request = moxios.requests.mostRecent()
+            request.respondWith({
+                status: 200
+            }).then(() => {
+                let table = wrapper.find('.table')
+                expect(table.html()).not.toContain('David')
+                expect(table.html()).toContain('Alex')
+                done()
+            })
+        })
+    })
+
+    // Helpers
+    function registerStubbedWrapper() {
+        let wrapper = mount(HomeView, {
+            'registered-component': NewCustomerForm
+        })
+        wrapper.setData({ isLoading: false })
+        return wrapper
+    }
+
+    function createBasicCustomer(wrapper, name) {
+        wrapper.find(NewCustomerForm).vm.$emit('create', { name: { first: name } })
+    }
 
 })

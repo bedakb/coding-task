@@ -35,7 +35,7 @@
                     <td>{{ item.lastContact }}</td>
                     <td>{{ item.customerLifetimeValue }}</td>
                     <td>
-                        <button class="button is-danger is-small">
+                        <button class="button is-danger is-small remove" @click="remove($index, item._id)">
                             <i class="fa fa-trash"></i>
                         </button>
                     </td>
@@ -84,6 +84,11 @@
             },
             add(data) {
                 this.customers.push(data)
+            },
+            remove(index, id) {
+                return CustomerService.remove(id)
+                    .then(response => this.customers.splice(index, 1))
+                    .catch(error => console.error(error))
             }
         }
 

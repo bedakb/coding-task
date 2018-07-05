@@ -16,7 +16,7 @@ export default new Router({
             component: HomeView
         },
         {
-            path: '/customer/:id?',
+            path: '/customer/:id',
             name: 'Customer',
             component: CustomerView
         }
