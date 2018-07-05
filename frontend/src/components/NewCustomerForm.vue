@@ -11,23 +11,23 @@
                 <div class="field-body">
                     <div class="field">
                         <p class="control is-expanded">
-                            <input class="input" type="text" placeholder="First name" v-model="form.name.first">
+                            <input class="input first" type="text" placeholder="First name" v-model="form.name.first">
                         </p>
                     </div>
                     <div class="field">
                         <p class="control is-expanded">
-                            <input class="input" type="text" placeholder="Last name" v-model="form.name.last">
+                            <input class="input last" type="text" placeholder="Last name" v-model="form.name.last">
                         </p>
                     </div>
                     <div class="field">
                         <p class="control is-expanded">
-                            <input class="input" type="text" placeholder="Birthday" v-model="form.birthday">
+                            <input class="input birthday" type="text" placeholder="Birthday" v-model="form.birthday">
                         </p>
                     </div>
                     <div class="field">
                         <p class="control is-expanded">
                             <div class="select is-fullwidth">
-                                <select name="gender" v-model="form.gender">
+                                <select name="gender" v-model="form.gender" class="gender">
                                     <option value="m">Male</option>
                                     <option value="w">Female</option>
                                 </select>
@@ -36,17 +36,20 @@
                     </div>
                     <div class="field">
                         <p class="control is-expanded">
-                            <input class="input" type="text" placeholder="Customer lifetime value" v-model="form.customerLifetimeValue">
+                            <input class="input liftime" type="text" placeholder="Customer lifetime value" v-model="form.customerLifetimeValue">
                         </p>
                     </div>
                 </div>
             </div>
-            <button type="submit" class="button is-primary is-pulled-right">Submit</button>
+            <button type="submit" class="button is-primary is-pulled-right create">Submit</button>
         </form>
     </div>
 </template>
 
 <script>
+
+    // Services
+    import CustomerService from '@/services/CustomerService'
 
     export default {
 
@@ -64,6 +67,14 @@
                     gender: '',
                     customerLifetimeValue: ''
                 }
+            }
+        },
+        
+        methods: {
+            create() {
+                CustomerService.create(this.form)
+                    .then(response => this.$emit('customerCreated', response.data))
+                    .catch(err => console.error(err))
             }
         }
 

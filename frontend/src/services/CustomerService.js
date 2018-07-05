@@ -6,6 +6,10 @@ export default {
 
     get() {
         return axios.get(`${API_URL}customers`)
+    },
+
+    create(data) {
+        return axios.post(`${API_URL}customers`, data)
     }
     
 }

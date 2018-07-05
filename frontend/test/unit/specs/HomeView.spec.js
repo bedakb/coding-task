@@ -12,7 +12,7 @@ describe('HomeView', () => {
     afterEach(() => {
         moxios.uninstall()
     })
-    
+
     it('fetch data from endpoint and render results in table', (done) => {
         let wrapper = mount(HomeView)
 
