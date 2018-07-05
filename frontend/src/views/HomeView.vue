@@ -1,6 +1,10 @@
 <template>
     <div>
-        <table class="table is-fullwidth">
+        <!-- New customer form -->
+        <new-customer-form></new-customer-form>
+
+        <!-- List all customers and store them in the table -->
+        <table class="table is-fullwidth" v-if="!isLoading">
             <thead>
                 <tr>
                     <th>First name</th>
@@ -35,20 +39,30 @@
                 </tr>
             </tbody>
         </table>
+        <div class="loading has-text-centered" v-if="isLoading">
+            <p>Loading...</p>
+        </div>
     </div>
 </template>
 
 <script>
 
+    // Services
     import CustomerService from '@/services/CustomerService'
+
+    // Components
+    import NewCustomerForm from '@/components/NewCustomerForm'
 
     export default {
     
         name: 'HomeView',
 
+        components: { NewCustomerForm },
+
         data() {
             return {
-                customers: []
+                customers: [],
+                isLoading: true
             }
         },
 
@@ -59,7 +73,10 @@
         methods: {
             init() {
                 CustomerService.get()
-                    .then(response => this.customers = response.data)
+                    .then(response => {
+                        this.isLoading = false
+                        this.customers = response.data
+                    })
                     .catch(err => console.error(err))
             }
         }
