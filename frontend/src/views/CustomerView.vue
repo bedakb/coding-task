@@ -43,7 +43,7 @@
             </div>
             <div class="field is-pulled-left">
                 <p class="control">
-                    <button class="button is-danger" type="button">
+                    <button class="button is-danger remove" type="button" @click="remove">
                         <span>Delete</span>
                     </button>
                 </p>     
@@ -110,6 +110,11 @@
             },
             update() {
                 CustomerService.update(this.$route.params.id, this.form)
+                    .then(() => this.$router.push('/'))
+                    .catch(err => console.error(err))
+            },
+            remove() {
+                CustomerService.remove(this.$route.params.id)
                     .then(() => this.$router.push('/'))
                     .catch(err => console.error(err))
             }
