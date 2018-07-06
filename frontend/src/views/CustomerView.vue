@@ -75,13 +75,13 @@
             }
         },
 
-        created() {
-            //this.init()
+        mounted() {
+            this.init()
         },
 
-        // watch: {
-        //     '$route': 'init'
-        // },
+        watch: {
+            '$route': 'init'
+        },
 
         methods: {
             init() {
