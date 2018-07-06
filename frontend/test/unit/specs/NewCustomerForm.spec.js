@@ -16,6 +16,14 @@ describe('NewCustomerForm', () => {
         moxios.uninstall()
     })
 
+    it('hides the create button if form is opened', () => {
+        let button = wrapper.find('.button')
+
+        button.trigger('click')
+
+        expect(button.isVisible()).toBe(false)
+    })
+
     it('shows the form on button click', () => {
         let button = wrapper.find('button.add'),
             form = wrapper.find('form')
@@ -25,6 +33,15 @@ describe('NewCustomerForm', () => {
         button.trigger('click')
 
         expect(form.isVisible()).toBe(true)
+    })
+
+    it('shows the close button if form is open', () => {
+        let button = wrapper.find('.button'),
+            close = wrapper.find('.close')
+
+        button.trigger('click')
+
+        expect(close.isVisible()).toBe(true)
     })
 
     it('emits customer data when its created', (done) => {

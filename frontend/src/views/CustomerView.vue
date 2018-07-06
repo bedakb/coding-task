@@ -1,26 +1,30 @@
 <template>
     <div>
-        <h2 class="title">Edit customer</h2>
+        <h2 class="title">Edit customer - {{ form.name.first }} {{ form.name.last }}</h2>
         <form @submit.prevent="update">
             <div class="field is-horizontal">
                 <div class="field-body">
                     <div class="field">
                         <p class="control is-expanded">
+                            <label>First name</label>
                             <input class="input first" type="text" placeholder="First name" v-model="form.name.first" required>
                         </p>
                     </div>
                     <div class="field">
                         <p class="control is-expanded">
+                            <label>Last name</label>
                             <input class="input last" type="text" placeholder="Last name" v-model="form.name.last" required>
                         </p>
                     </div>
                     <div class="field">
                         <p class="control is-expanded">
-                            <input class="input birthday" type="text" placeholder="Birthday" v-model="form.birthday">
+                            <label>Birthday</label>
+                            <datepicker name="birthday" format="yyyy-MM-dd" input-class="input birthday" v-model="form.birthday"></datepicker>
                         </p>
                     </div>
                     <div class="field">
                         <p class="control is-expanded">
+                            <label>Gender</label>
                             <div class="select is-fullwidth">
                                 <select name="gender" v-model="form.gender" class="gender">
                                     <option value="m">Male</option>
@@ -30,15 +34,23 @@
                         </p>
                     </div>
                     <div class="field">
+                        <label>Lifetime value</label>
                         <p class="control is-expanded">
                             <input class="input liftime" type="text" placeholder="Customer lifetime value" v-model="form.customerLifetimeValue">
                         </p>
                     </div>
                 </div>
             </div>
+            <div class="field is-pulled-left">
+                <p class="control">
+                    <button class="button is-danger" type="button">
+                        <span>Delete</span>
+                    </button>
+                </p>     
+            </div>
             <div class="field has-addons is-pulled-right">
                 <p class="control">
-                    <button class="button cancel" type="button">
+                    <button class="button cancel" type="button" @click="$router.push('/')">
                         <span>Cancel</span>
                     </button>
                 </p>
@@ -57,9 +69,14 @@
     // Services
     import CustomerService from '@/services/CustomerService'
 
+    // Components
+    import Datepicker from 'vuejs-datepicker'
+
     export default {
 
         name: 'CustomerView',
+
+        components: { Datepicker },
 
         data() {
             return {
@@ -90,6 +107,11 @@
                         .then(response => this.form = response.data)
                         .catch(err => console.error(err)) 
                 }
+            },
+            update() {
+                CustomerService.update(this.$route.params.id, this.form)
+                    .then(() => this.$router.push('/'))
+                    .catch(err => console.error(err))
             }
         }
 

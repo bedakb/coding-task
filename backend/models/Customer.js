@@ -6,7 +6,7 @@ const CustomerSchema = new Schema({
         first: String,
         last: String
     },
-    birthday: String,
+    birthday: Date,
     gender: String,
     lastContact: { type: Date, default: Date.now },
     customerLifetimeValue: Number

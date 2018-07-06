@@ -13,7 +13,7 @@ export default {
     },
 
     update(id, data) {
-        return axios.post(`${API_URL}customer/${id}`, data)
+        return axios.put(`${API_URL}customer/${id}`, data)
     },
 
     remove(id) {
