@@ -35,6 +35,9 @@
                     <td>{{ item.lastContact }}</td>
                     <td>{{ item.customerLifetimeValue }}</td>
                     <td>
+                        <router-link :to="{ name: 'Customer', params: { id: item._id } }" tag="button" class="button is-small">
+                            <i class="fa fa-pencil"></i>
+                        </router-link>
                         <button class="button is-danger is-small remove" @click="remove($index, item._id)">
                             <i class="fa fa-trash"></i>
                         </button>

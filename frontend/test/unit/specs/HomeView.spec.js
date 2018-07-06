@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { mount, shallowMount } from '@vue/test-utils'
+import { mount, shallowMount, RouterLinkStub } from '@vue/test-utils'
 import HomeView from '@/views/HomeView'
 
 import NewCustomerForm from '@/components/NewCustomerForm'
@@ -17,7 +17,11 @@ describe('HomeView', () => {
     })
 
     it('fetch data from endpoint and render results in table', (done) => {
-        let wrapper = mount(HomeView)
+        let wrapper = mount(HomeView, {
+            stubs: {
+                'router-link': RouterLinkStub
+            }
+        })
 
         moxios.stubRequest('http://localhost:8081/customers', {
             status: 200,
@@ -73,7 +77,10 @@ describe('HomeView', () => {
     // Helpers
     function registerStubbedWrapper() {
         let wrapper = mount(HomeView, {
-            'registered-component': NewCustomerForm
+            'registered-component': NewCustomerForm,
+            stubs: {
+                'router-link': RouterLinkStub
+            }
         })
         wrapper.setData({ isLoading: false })
         return wrapper

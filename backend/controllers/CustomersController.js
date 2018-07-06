@@ -26,14 +26,11 @@ module.exports = {
 
         const newCustomer = new Customer({ name, birthday, gender, customerLifetimeValue})
 
-        newCustomer.save(err => {
+        newCustomer.save((err, data) => {
             if (err) {
                 handleError(res, err.message, 'Error occured: Can not create new customer !')
             }
-            res.send({
-                success: true,
-                message: 'Customer has been successfully created !'
-            })
+            res.send(data)
         })
     },
 
