@@ -43,6 +43,17 @@ describe('HomeView', () => {
         expect(wrapper.find('.loading').exists()).toBe(true)
     })
 
+    it('shows the message if response data is empty', () => {
+        let wrapper = mount(HomeView)
+
+        wrapper.setData({
+            customers: [],
+            isLoading: false
+        })
+
+        expect(wrapper.find('.empty').exists()).toBe(true)
+    })
+
     it('push new customer to list', () => {
         let wrapper = registerStubbedWrapper()
         

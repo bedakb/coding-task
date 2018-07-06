@@ -6,8 +6,11 @@
         >
         </new-customer-form>
 
+        <div class="empty has-text-centered" v-if="!isLoading && !customers.length">
+            <p>There are no data found.</p>
+        </div>
         <!-- List all customers and store them in the table -->
-        <table class="table is-fullwidth" v-if="!isLoading">
+        <table class="table is-fullwidth" v-if="!isLoading && customers.length">
             <thead>
                 <tr>
                     <th>First name</th>
@@ -89,7 +92,7 @@
                 this.customers.push(data)
             },
             remove(index, id) {
-                return CustomerService.remove(id)
+                CustomerService.remove(id)
                     .then(response => this.customers.splice(index, 1))
                     .catch(error => console.error(error))
             }
