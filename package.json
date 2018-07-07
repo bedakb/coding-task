@@ -9,7 +9,8 @@
     "start": "node ./server.js",
     "unit": "jest --config test/unit/jest.conf.js --coverage --no-cache",
     "test": "npm run unit",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "postinstall": "node build/build.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
