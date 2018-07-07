@@ -10,15 +10,15 @@
             <p>There are no data found.</p>
         </div>
         <!-- List all customers and store them in the table -->
-        <table class="table is-fullwidth" v-if="!isLoading && customers.length">
+        <table class="table is-fullwidth is-striped" v-if="!isLoading && customers.length">
             <thead>
                 <tr>
                     <th>First name</th>
                     <th>Last name</th>
                     <th>Birthday</th>
-                    <th>Gender</th>
+                    <th class="has-text-centered">Gender</th>
                     <th>Last contact</th>
-                    <th>Customer lifetime</th>
+                    <th class="has-text-right">Customer lifetime</th>
                     <th></th>
                 </tr>
             </thead>
@@ -27,7 +27,7 @@
                     <td>{{ item.name.first }}</td>
                     <td>{{ item.name.last }}</td>
                     <td>{{ item.birthday | formatDate }}</td>
-                    <td>
+                    <td class="has-text-centered">
                         <span v-show="item.gender === 'w'">
                             <i class="fa fa-female"></i>
                         </span>
@@ -36,8 +36,8 @@
                         </span>
                     </td>
                     <td>{{ item.lastContact | formatDate }}</td>
-                    <td>{{ item.customerLifetimeValue }}</td>
-                    <td>
+                    <td class="has-text-right">{{ item.customerLifetimeValue }}</td>
+                    <td class="has-text-right">
                         <router-link :to="{ name: 'Customer', params: { id: item._id } }" tag="button" class="button is-small">
                             <i class="fa fa-pencil"></i>
                         </router-link>
@@ -49,7 +49,7 @@
             </tbody>
         </table>
         <div class="loading has-text-centered" v-if="isLoading">
-            <p>Loading...</p>
+            <i class="fa fa-spinner fa-spin"></i>
         </div>
     </div>
 </template>
@@ -107,3 +107,8 @@
 
 </script>
 
+<style>
+    .loading i {
+        font-size: 30px;
+    }
+</style>

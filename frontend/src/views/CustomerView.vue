@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2 class="title">Edit customer - {{ form.name.first }} {{ form.name.last }}</h2>
+        <h2 class="title">Edit customer - {{ name.first }} {{ name.last }}</h2>
         <form @submit.prevent="update">
             <div class="field is-horizontal">
                 <div class="field-body">
@@ -36,7 +36,7 @@
                     <div class="field">
                         <label>Lifetime value</label>
                         <p class="control is-expanded">
-                            <input class="input liftime" type="text" placeholder="Customer lifetime value" v-model="form.customerLifetimeValue">
+                            <input class="input liftime" type="number" placeholder="Customer lifetime value" step="any" v-model="form.customerLifetimeValue">
                         </p>
                     </div>
                 </div>
@@ -88,7 +88,8 @@
                     birthday: '',
                     gender: '',
                     customerLifetimeValue: ''
-                }
+                },
+                name: {}
             }
         },
 
@@ -104,7 +105,10 @@
             init() {
                 if (this.$route.params.id) {
                     CustomerService.getSingle(this.$route.params.id)
-                        .then(response => this.form = response.data)
+                        .then(response => {
+                            this.form = response.data
+                            this.name = Object.assign({}, response.data.name)
+                        })
                         .catch(err => console.error(err)) 
                 }
             },

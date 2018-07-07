@@ -54,7 +54,7 @@
                             </div>
                             <div class="field">
                                 <p class="control is-expanded">
-                                    <input class="input liftime" type="text" placeholder="Customer lifetime value" v-model="form.customerLifetimeValue">
+                                    <input class="input liftime" type="number" placeholder="Customer lifetime value" step="any" v-model="form.customerLifetimeValue">
                                 </p>
                             </div>
                         </div>
@@ -73,6 +73,9 @@
     
     // Components
     import Datepicker from 'vuejs-datepicker'
+
+    // Helpers
+    import { resetForm } from '@/helpers'
 
     export default {
 
@@ -100,7 +103,7 @@
                 CustomerService.create(this.form)
                     .then(response => {
                         this.$emit('create', response.data)
-                        e.target.reset()
+                        resetForm(this.form)
                     })
                     .catch(err => console.error(err))
             }
