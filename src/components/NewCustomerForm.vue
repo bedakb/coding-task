@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- Basic form controls -->
-        <div class="columns">
+        <div class="columns is-mobile">
             <div class="column is-12">
                 <button 
                     class="button add is-primary is-pulled-right" 
