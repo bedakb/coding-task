@@ -22,7 +22,6 @@ describe('CustomerView', () => {
                     push: pushSpy,
                 },
                 $route: {
-                    name: 'Customer',
                     params: { id: 1}
                 }
             }
@@ -33,7 +32,7 @@ describe('CustomerView', () => {
         moxios.uninstall()
     })
 
-    it('renders customer form', () => {
+    it('render customer form', () => {
         expect(wrapper.contains('form')).toBe(true)
     })
 

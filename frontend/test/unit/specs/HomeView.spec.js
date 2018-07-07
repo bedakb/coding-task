@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { mount, shallowMount, RouterLinkStub } from '@vue/test-utils'
+import { mount, RouterLinkStub } from '@vue/test-utils'
 import HomeView from '@/views/HomeView'
 
 import NewCustomerForm from '@/components/NewCustomerForm'
@@ -23,16 +23,17 @@ describe('HomeView', () => {
             }
         })
 
-        moxios.stubRequest('http://localhost:8081/customers', {
-            status: 200,
-            response: [{ _id: 1, name: { first: 'Belmin', last: 'Bedak' }}]
-        })
-
         moxios.wait(() => {
-            let table = wrapper.find('.table')
-            expect(table.html()).toContain('Belmin')
-            done()
-        })
+            let request = moxios.requests.mostRecent()
+            request.respondWith({
+                status: 200,
+                response: [{ _id: 1, name: { first: 'Belmin', last: 'Bedak' }}]
+            }).then(() => {
+                let table = wrapper.find('.table')
+                expect(table.html()).toContain('Belmin')
+                done()
+            })
+        })        
     })
 
     it('display loading spinner if data is loading', () => {
@@ -43,7 +44,7 @@ describe('HomeView', () => {
         expect(wrapper.find('.loading').exists()).toBe(true)
     })
 
-    it('shows the message if response data is empty', () => {
+    it('display the message if response data is empty', () => {
         let wrapper = mount(HomeView)
 
         wrapper.setData({
