@@ -1,6 +1,6 @@
 # codingtask
 
-> VueJS SPA
+> SPA for coding task
 
 ## Build Setup
 

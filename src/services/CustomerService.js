@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'http://localhost:8081/'
+const API_URL = process.env.NODE_ENV === 'development' ? 'http://localhost:8081/api/' : '/api/'
 
 export default {
 
