@@ -14,6 +14,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bulma": "^0.7.1",
+    "dayjs": "^1.7.2",
     "font-awesome": "^4.7.0",
     "moxios": "^0.4.0",
     "vue": "^2.5.2",

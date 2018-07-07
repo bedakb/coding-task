@@ -38,7 +38,7 @@
                             </div>
                             <div class="field">
                                 <p class="control is-expanded">
-                                    <datepicker name="birthday" format="yyyy-MM-dd" input-class="input birthday" v-model="form.birthday" placeholder="Birthday"></datepicker>
+                                    <datepicker name="birthday" format="dd MMMM yyyy" input-class="input birthday" v-model="form.birthday" placeholder="Birthday"></datepicker>
                                 </p>
                             </div>
                             <div class="field">

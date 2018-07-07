@@ -26,7 +26,7 @@
                 <tr v-for="(item, $index) in customers" :key="item._id">
                     <td>{{ item.name.first }}</td>
                     <td>{{ item.name.last }}</td>
-                    <td>{{ item.birthday }}</td>
+                    <td>{{ item.birthday | formatDate }}</td>
                     <td>
                         <span v-show="item.gender === 'w'">
                             <i class="fa fa-female"></i>
@@ -35,7 +35,7 @@
                             <i class="fa fa-male"></i>
                         </span>
                     </td>
-                    <td>{{ item.lastContact }}</td>
+                    <td>{{ item.lastContact | formatDate }}</td>
                     <td>{{ item.customerLifetimeValue }}</td>
                     <td>
                         <router-link :to="{ name: 'Customer', params: { id: item._id } }" tag="button" class="button is-small">
@@ -62,11 +62,16 @@
     // Components
     import NewCustomerForm from '@/components/NewCustomerForm'
 
+    // Filters
+    import { formatDate } from '@/filters'
+
     export default {
     
         name: 'HomeView',
 
         components: { NewCustomerForm },
+
+        filters: { formatDate },
 
         data() {
             return {
