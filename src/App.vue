@@ -2,7 +2,9 @@
     <div id="app">
         <section class="section">
             <div class="container">
-                <router-view></router-view>
+                <transition name="fade">
+                    <router-view></router-view>
+                </transition>
             </div>
         </section>
     </div>
@@ -17,3 +19,13 @@
     }
 
 </script>
+
+<style>
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity 0.6s;
+    }
+    .fade-enter, .fade-leave {
+        opacity: 0;
+    }
+</style>
+

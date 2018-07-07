@@ -19,7 +19,7 @@
                     <div class="field">
                         <p class="control is-expanded">
                             <label>Birthday</label>
-                            <datepicker name="birthday" format="dd MMMM yyyy" input-class="input birthday" v-model="form.birthday"></datepicker>
+                            <datepicker name="birthday" format="dd MMMM yyyy" input-class="input birthday" v-model="form.birthday" placeholder="Birthday"></datepicker>
                         </p>
                     </div>
                     <div class="field">
