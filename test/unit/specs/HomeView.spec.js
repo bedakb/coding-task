@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import { mount, RouterLinkStub } from '@vue/test-utils'
 import HomeView from '@/views/HomeView'
 
@@ -43,7 +42,7 @@ describe('HomeView', () => {
 
         expect(wrapper.find('.loading').exists()).toBe(true)
     })
-
+  
     it('display the message if response data is empty', () => {
         let wrapper = mount(HomeView)
 
