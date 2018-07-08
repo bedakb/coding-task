@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const app = express()
 
-const CustomersController = require('./server/controllers/CustomersController')
+const CustomersController = require('./controllers/CustomersController')
 const distDir = `${__dirname}/dist/`
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/webtrekk', { useNewUrlParser: true });
