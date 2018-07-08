@@ -103,14 +103,12 @@
 
         methods: {
             init() {
-                if (this.$route.params.id) {
-                    CustomerService.getSingle(this.$route.params.id)
-                        .then(response => {
-                            this.form = response.data
-                            this.name = Object.assign({}, response.data.name)
-                        })
-                        .catch(err => console.error(err)) 
-                }
+                CustomerService.getSingle(this.$route.params.id)
+                    .then(response => {
+                        this.form = response.data
+                        this.name = Object.assign({}, response.data.name)
+                    })
+                    .catch(err => console.error(err)) 
             },
             update() {
                 CustomerService.update(this.$route.params.id, this.form)
