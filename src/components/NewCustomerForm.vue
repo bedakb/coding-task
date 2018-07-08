@@ -1,12 +1,12 @@
 <template>
-    <div>
+    <div :class="{ 'mb50': isVisible }">
         <!-- Basic form controls -->
         <div class="columns is-mobile">
             <div class="column is-12">
                 <button 
                     class="button add is-primary is-pulled-right" 
                     v-show="!isVisible"
-                    @click="isVisible = true"
+                    @click="toggleVisibility"
                 >
                     <span class="icon">
                         <i class="fa fa-plus"></i>
@@ -16,7 +16,7 @@
                 <a 
                     class="delete is-pulled-right close" 
                     v-show="isVisible" 
-                    @click="isVisible = false"
+                    @click="toggleVisibility"
                 ></a>
             </div>
         </div>
@@ -103,13 +103,26 @@
                 CustomerService.create(this.form)
                     .then(response => {
                         this.$emit('create', response.data)
-                        resetForm(this.form)
+                        this.toggleVisibility()
                     })
                     .catch(err => console.error(err))
+            },
+            toggleVisibility() {
+                if (!this.isVisible) {
+                    resetForm(this.form)
+                }
+                this.isVisible = !this.isVisible
             }
         }
 
     }
 
 </script>
+
+<style>
+    .mb50 {
+        margin-bottom: 50px;
+    }
+</style>
+
 

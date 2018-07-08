@@ -79,8 +79,8 @@ describe('HomeView', () => {
                 status: 200
             }).then(() => {
                 let table = wrapper.find('.table')
-                expect(table.html()).not.toContain('David')
-                expect(table.html()).toContain('Alex')
+                expect(table.html()).not.toContain('Alex')
+                expect(table.html()).toContain('David')
                 done()
             })
         })

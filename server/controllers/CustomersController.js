@@ -9,7 +9,7 @@ module.exports = {
                 handleError(res, err.message, 'Error occured: Fetching customers list data failed !')
             }
             res.send(data)
-        })
+        }).sort({ _id: -1 })
     },
 
     single(req, res) {

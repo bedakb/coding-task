@@ -10,44 +10,46 @@
             <p>There are no data found.</p>
         </div>
         <!-- List all customers and store them in the table -->
-        <table class="table is-fullwidth is-striped" v-if="!isLoading && customers.length">
-            <thead>
-                <tr>
-                    <th>First name</th>
-                    <th>Last name</th>
-                    <th>Birthday</th>
-                    <th class="has-text-centered">Gender</th>
-                    <th>Last contact</th>
-                    <th class="has-text-right">Customer lifetime</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(item, $index) in customers" :key="item._id">
-                    <td>{{ item.name.first }}</td>
-                    <td>{{ item.name.last }}</td>
-                    <td>{{ item.birthday | formatDate }}</td>
-                    <td class="has-text-centered">
-                        <span v-show="item.gender === 'w'">
-                            <i class="fa fa-female"></i>
-                        </span>
-                        <span v-show="item.gender === 'm'">
-                            <i class="fa fa-male"></i>
-                        </span>
-                    </td>
-                    <td>{{ item.lastContact | formatDate }}</td>
-                    <td class="has-text-right">{{ item.customerLifetimeValue }}</td>
-                    <td class="has-text-right">
-                        <router-link :to="{ name: 'Customer', params: { id: item._id } }" tag="button" class="button is-small">
-                            <i class="fa fa-pencil"></i>
-                        </router-link>
-                        <button class="button is-danger is-small remove" @click="remove($index, item._id)">
-                            <i class="fa fa-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="table-wrapper">
+            <table class="table is-fullwidth is-striped" v-if="!isLoading && customers.length">
+                <thead>
+                    <tr>
+                        <th>First name</th>
+                        <th>Last name</th>
+                        <th>Birthday</th>
+                        <th class="has-text-centered">Gender</th>
+                        <th>Last contact</th>
+                        <th class="has-text-right">Customer lifetime</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(item, $index) in customers" :key="item._id">
+                        <td>{{ item.name.first }}</td>
+                        <td>{{ item.name.last }}</td>
+                        <td>{{ item.birthday | formatDate }}</td>
+                        <td class="has-text-centered">
+                            <span v-show="item.gender === 'w'">
+                                <i class="fa fa-female"></i>
+                            </span>
+                            <span v-show="item.gender === 'm'">
+                                <i class="fa fa-male"></i>
+                            </span>
+                        </td>
+                        <td>{{ item.lastContact | formatDate }}</td>
+                        <td class="has-text-right">{{ item.customerLifetimeValue }}</td>
+                        <td class="has-text-right">
+                            <router-link :to="{ name: 'Customer', params: { id: item._id } }" tag="button" class="button is-small">
+                                <i class="fa fa-pencil"></i>
+                            </router-link>
+                            <button class="button is-danger is-small remove" @click="remove($index, item._id)">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <div class="loading has-text-centered" v-if="isLoading">
             <i class="fa fa-spinner fa-spin"></i>
         </div>
@@ -94,7 +96,7 @@
                     .catch(err => console.error(err))
             },
             add(data) {
-                this.customers.push(data)
+                this.customers.unshift(data)
             },
             remove(index, id) {
                 CustomerService.remove(id)
@@ -110,5 +112,8 @@
 <style>
     .loading i {
         font-size: 30px;
+    }
+    .table-wrapper {
+        overflow-x: auto;
     }
 </style>
