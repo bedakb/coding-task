@@ -33,7 +33,7 @@ This will save bundled files in `dist` directory, in project root.
 To run unit tests run:
 
 ``` bash
-npm run build
+npm run unit
 ```
 
 For testing purposes we are using Jest, vue-test-utils (Utilities for testing Vue components) and Moxios (for mocking axios requests).
