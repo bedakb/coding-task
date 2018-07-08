@@ -10,7 +10,7 @@ These dependencies are required in order to run this application locally:
 - NPM
 - MongoDB
 
-## Running development server
+## Commands
 
 Application uses slightly modified version of Vue CLI Webpack template.
 
