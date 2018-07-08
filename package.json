@@ -5,8 +5,8 @@
   "author": "bedakb <belmoo996@hotmail.com>",
   "private": true,
   "scripts": {
-    "dev": "nodemon ./server/server.js & webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "node ./server/server.js",
+    "dev": "nodemon ./server.js & webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "start": "node ./server.js",
     "unit": "jest --config test/unit/jest.conf.js --coverage --no-cache",
     "test": "npm run unit",
     "build": "node build/build.js",
