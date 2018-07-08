@@ -11,7 +11,7 @@ These dependencies are required in order to run this application locally:
 - MongoDB
 
 ## Structure
-All frontend related files are placed under the `src` directory.Unit testing files could be find under `src/test/unit/specs`.
+All frontend related files are placed under the `src` directory.Unit testing files could be find under `test/unit/specs`.
 
 Backend source code files could be find under the `server` directory.
 
