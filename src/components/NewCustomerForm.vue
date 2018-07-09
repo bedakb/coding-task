@@ -9,7 +9,7 @@
                     @click="toggleVisibility"
                 >
                      <span class="icon">
-                        <i class="fa fa-minus"></i>
+                        <i class="fa fa-user"></i>
                     </span> 
                     <span>Create customer</span>
                 </button>
