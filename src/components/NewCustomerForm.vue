@@ -8,9 +8,9 @@
                     v-show="!isVisible"
                     @click="toggleVisibility"
                 >
-                    <!-- <span class="icon">
-                        <i class="fa fa-plus"></i>
-                    </span> -->
+                     <span class="icon">
+                        <i class="fa fa-minus"></i>
+                    </span> 
                     <span>Create customer</span>
                 </button>
                 <a 
