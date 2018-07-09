@@ -1,10 +1,4 @@
 version: 2
-deployment:
-  prod:
-    branch: master
-    heroku:
-      appname: wt-codingtask
-
 jobs:
   build:
     docker:
